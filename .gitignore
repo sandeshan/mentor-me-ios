@@ -1,3 +1,4 @@
-# ignore Pods dir
+# ignore lock file and Pods dir
 
+Podfile.lock
 /Pods
