@@ -14,15 +14,18 @@
 		A41C556B208C20260042B46C /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41C556A208C20260042B46C /* User.storyboard */; };
 		A41C556D208C20580042B46C /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C556C208C20580042B46C /* UserDetailsViewController.swift */; };
 		A43C5632208E4DCE00091C7E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C5631208E4DCE00091C7E /* HomeViewController.swift */; };
+		A43F605420917C5C00683AE4 /* ClassDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A43F605320917C5C00683AE4 /* ClassDetails.storyboard */; };
 		A4438F49208FF162009EB059 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4438F48208FF162009EB059 /* LearnViewController.swift */; };
 		A4438F4B208FF4BF009EB059 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4438F4A208FF4BF009EB059 /* ClassTableViewCell.swift */; };
 		A4438F4D209001E7009EB059 /* ClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4438F4C209001E7009EB059 /* ClassModel.swift */; };
 		A455968620900E5D00360324 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A455968520900E5D00360324 /* CategoryModel.swift */; };
 		A45E292B208EDD2600B59A8B /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E292A208EDD2600B59A8B /* SettingsController.swift */; };
+		A4D643D520928DCB00682A83 /* ClassDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D643D420928DCB00682A83 /* ClassDetailsViewController.swift */; };
 		A4E15D0E208A9261002D02B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E15D0D208A9261002D02B4 /* AppDelegate.swift */; };
 		A4E15D15208A9261002D02B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E15D13208A9261002D02B4 /* Main.storyboard */; };
 		A4E15D17208A9262002D02B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4E15D16208A9262002D02B4 /* Assets.xcassets */; };
 		A4E15D1A208A9262002D02B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E15D18208A9262002D02B4 /* LaunchScreen.storyboard */; };
+		A4F286142092AB1100BDEDA1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F286132092AB1100BDEDA1 /* UserModel.swift */; };
 		A4F9C45C208D4EB3002F09FB /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4F9C45B208D4EB3002F09FB /* Home.storyboard */; };
 		A4F9C45E208D5A69002F09FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4F9C45D208D5A69002F09FB /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -36,17 +39,20 @@
 		A41C556A208C20260042B46C /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		A41C556C208C20580042B46C /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		A43C5631208E4DCE00091C7E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A43F605320917C5C00683AE4 /* ClassDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClassDetails.storyboard; sourceTree = "<group>"; };
 		A4438F48208FF162009EB059 /* LearnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 		A4438F4A208FF4BF009EB059 /* ClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewCell.swift; sourceTree = "<group>"; };
 		A4438F4C209001E7009EB059 /* ClassModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassModel.swift; sourceTree = "<group>"; };
 		A455968520900E5D00360324 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		A45E292A208EDD2600B59A8B /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		A4D643D420928DCB00682A83 /* ClassDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDetailsViewController.swift; sourceTree = "<group>"; };
 		A4E15D0A208A9261002D02B4 /* Mentor.me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mentor.me.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E15D0D208A9261002D02B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4E15D14208A9261002D02B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4E15D16208A9262002D02B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4E15D19208A9262002D02B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4E15D1B208A9262002D02B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4F286132092AB1100BDEDA1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		A4F9C45B208D4EB3002F09FB /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		A4F9C45D208D5A69002F09FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C14267C17E37E7581ACCDAC6 /* Pods-Mentor.me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mentor.me.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mentor.me/Pods-Mentor.me.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +101,10 @@
 			children = (
 				A4E15D0D208A9261002D02B4 /* AppDelegate.swift */,
 				A4E15D16208A9262002D02B4 /* Assets.xcassets */,
+				A455968520900E5D00360324 /* CategoryModel.swift */,
+				A43F605320917C5C00683AE4 /* ClassDetails.storyboard */,
+				A4D643D420928DCB00682A83 /* ClassDetailsViewController.swift */,
+				A4438F4C209001E7009EB059 /* ClassModel.swift */,
 				A4438F4A208FF4BF009EB059 /* ClassTableViewCell.swift */,
 				A4F9C45D208D5A69002F09FB /* GoogleService-Info.plist */,
 				A4F9C45B208D4EB3002F09FB /* Home.storyboard */,
@@ -109,8 +119,7 @@
 				A41C555E208BF8EF0042B46C /* SignUpViewController.swift */,
 				A41C556A208C20260042B46C /* User.storyboard */,
 				A41C556C208C20580042B46C /* UserDetailsViewController.swift */,
-				A4438F4C209001E7009EB059 /* ClassModel.swift */,
-				A455968520900E5D00360324 /* CategoryModel.swift */,
+				A4F286132092AB1100BDEDA1 /* UserModel.swift */,
 			);
 			path = Mentor.me;
 			sourceTree = "<group>";
@@ -190,6 +199,7 @@
 				A4F9C45C208D4EB3002F09FB /* Home.storyboard in Resources */,
 				A4E15D17208A9262002D02B4 /* Assets.xcassets in Resources */,
 				A4E15D15208A9261002D02B4 /* Main.storyboard in Resources */,
+				A43F605420917C5C00683AE4 /* ClassDetails.storyboard in Resources */,
 				A4F9C45E208D5A69002F09FB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,6 +334,8 @@
 				A41C556D208C20580042B46C /* UserDetailsViewController.swift in Sources */,
 				A4E15D0E208A9261002D02B4 /* AppDelegate.swift in Sources */,
 				A45E292B208EDD2600B59A8B /* SettingsController.swift in Sources */,
+				A4D643D520928DCB00682A83 /* ClassDetailsViewController.swift in Sources */,
+				A4F286142092AB1100BDEDA1 /* UserModel.swift in Sources */,
 				A43C5632208E4DCE00091C7E /* HomeViewController.swift in Sources */,
 				A4438F49208FF162009EB059 /* LearnViewController.swift in Sources */,
 				A41C5562208BF8F00042B46C /* SignUpViewController.swift in Sources */,
