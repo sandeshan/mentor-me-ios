@@ -28,8 +28,6 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("test")
-        
         databaseRef = Database.database().reference()
         initDropdown()
         fetchClasses()
