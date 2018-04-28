@@ -14,7 +14,6 @@ import DropDown
 
 class LearnViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-
     @IBOutlet weak var categoryBtn: UIButton!
     @IBOutlet weak var classesList: UITableView!
     
@@ -22,22 +21,25 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
     var categoriesArray = [CategoryModel]()
     
     var databaseRef: DatabaseReference!
+    let DISTANCE_MATRIX_KEY = "AIzaSyDDG4-J6NDJdHOy-qm_O6m57HJn82Xwk04"
+    let DISTANCE_MATRIX_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial"
     
     var dropDown: DropDown!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("test")
+        self.title = "Learn"
         
         databaseRef = Database.database().reference()
         initDropdown()
-        fetchClasses()
+        fetchClasses(categoryID: 8)
     }
     
     func initDropdown() {
         self.dropDown = DropDown()
         self.dropDown.anchorView = categoryBtn
+        self.dropDown.dismissMode = .automatic
         
         self.databaseRef.child("categories").observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -51,6 +53,7 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
                     
                     self.categoriesArray.append(cat)
                 }
+                self.categoriesArray.append(CategoryModel(categoryID: 8, categoryName: "All"))
                 for category in self.categoriesArray {
                     self.dropDown.dataSource.append(category.categoryName!)
                 }
@@ -59,13 +62,22 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
             print(error.localizedDescription)
         }
         
+        self.dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.categoryBtn.setTitle("Category: \(item)", for: .normal)
+            self.fetchClasses(categoryID: index)
+        }
+        
     }
     
     @IBAction func categoryBtnClick(_ sender: UIButton) {
         self.dropDown.show()
     }
     
-    func fetchClasses() {
+    func calcDistance(categoryID: Int) {
+        
+    }
+    
+    func fetchClasses(categoryID: Int) {
 //        let userID = Auth.auth().currentUser?.uid
         self.databaseRef.child("classes").observe( .value, with: { (snapshot) in
             
@@ -81,7 +93,14 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
                                                teacherID: classObj?["teacherID"] as? String,
                                                title: classObj?["title"] as? String)
                     
-                    self.classesArray.append(eachClass)
+                    if (categoryID == 8) {
+                        self.classesArray.append(eachClass)
+                    } else {
+                        if eachClass.category == categoryID {
+                            self.classesArray.append(eachClass)
+                        }
+                    }
+                    
                 }
                 self.classesList.reloadData()
             }
@@ -93,6 +112,19 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let indexPath = tableView.indexPathForSelectedRow
+        
+        let classDetails = self.classesArray[indexPath![1]]
+        self.showClassDetails(classDetails: classDetails)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 128
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -119,6 +151,18 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         return cell
+    }
+    
+    func showClassDetails(classDetails: ClassModel) {
+        
+        let storyboard = UIStoryboard(name: "ClassDetails", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "classDetails") as! ClassDetailsViewController
+        controller.classDetails = classDetails
+        self.present(controller, animated: true, completion: nil)
+        
+//        let detailViewController = ClassDetailsViewController()
+//        detailViewController.classDetails = classDetails
+//        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 
 }
