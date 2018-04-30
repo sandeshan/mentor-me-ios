@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		430ECA7D2097834C00C3D805 /* TeachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430ECA7C2097834C00C3D805 /* TeachViewController.swift */; };
+		4338EF2820969D4A006A035F /* MyClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4338EF2720969D4A006A035F /* MyClassesViewController.swift */; };
 		52ADB01597469977E185F654 /* Pods_Mentor_me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D29C7DB980914682EB642A /* Pods_Mentor_me.framework */; };
 		A41C5562208BF8F00042B46C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C555E208BF8EF0042B46C /* SignUpViewController.swift */; };
 		A41C5564208BF8F00042B46C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C5560208BF8F00042B46C /* LoginViewController.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		430ECA7C2097834C00C3D805 /* TeachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachViewController.swift; sourceTree = "<group>"; };
+		4338EF2720969D4A006A035F /* MyClassesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClassesViewController.swift; sourceTree = "<group>"; };
 		60C65BDE9A780B4EC9D10C6A /* Pods-Mentor.me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mentor.me.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mentor.me/Pods-Mentor.me.debug.xcconfig"; sourceTree = "<group>"; };
 		82D29C7DB980914682EB642A /* Pods_Mentor_me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mentor_me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41C555E208BF8EF0042B46C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +82,53 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		430ECA7E2097847100C3D805 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A455968520900E5D00360324 /* CategoryModel.swift */,
+				A4438F4C209001E7009EB059 /* ClassModel.swift */,
+				A4F286132092AB1100BDEDA1 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		430ECA7F2097849000C3D805 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A43F605320917C5C00683AE4 /* ClassDetails.storyboard */,
+				A4F9C45B208D4EB3002F09FB /* Home.storyboard */,
+				A4E15D18208A9262002D02B4 /* LaunchScreen.storyboard */,
+				A4E15D13208A9261002D02B4 /* Main.storyboard */,
+				A41C556A208C20260042B46C /* User.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		430ECA802097849000C3D805 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4D643D420928DCB00682A83 /* ClassDetailsViewController.swift */,
+				A43C5631208E4DCE00091C7E /* HomeViewController.swift */,
+				A4438F48208FF162009EB059 /* LearnViewController.swift */,
+				A41C5560208BF8F00042B46C /* LoginViewController.swift */,
+				4338EF2720969D4A006A035F /* MyClassesViewController.swift */,
+				A41C5561208BF8F00042B46C /* ResetPasswordViewController.swift */,
+				A45E292A208EDD2600B59A8B /* SettingsController.swift */,
+				A41C555E208BF8EF0042B46C /* SignUpViewController.swift */,
+				430ECA7C2097834C00C3D805 /* TeachViewController.swift */,
+				A41C556C208C20580042B46C /* UserDetailsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		430ECA812097849000C3D805 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				A4438F4A208FF4BF009EB059 /* ClassTableViewCell.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		A4E15D01208A9261002D02B4 = {
 			isa = PBXGroup;
 			children = (
@@ -101,25 +152,12 @@
 			children = (
 				A4E15D0D208A9261002D02B4 /* AppDelegate.swift */,
 				A4E15D16208A9262002D02B4 /* Assets.xcassets */,
-				A455968520900E5D00360324 /* CategoryModel.swift */,
-				A43F605320917C5C00683AE4 /* ClassDetails.storyboard */,
-				A4D643D420928DCB00682A83 /* ClassDetailsViewController.swift */,
-				A4438F4C209001E7009EB059 /* ClassModel.swift */,
-				A4438F4A208FF4BF009EB059 /* ClassTableViewCell.swift */,
+				430ECA802097849000C3D805 /* Controllers */,
+				430ECA812097849000C3D805 /* Custom */,
 				A4F9C45D208D5A69002F09FB /* GoogleService-Info.plist */,
-				A4F9C45B208D4EB3002F09FB /* Home.storyboard */,
-				A43C5631208E4DCE00091C7E /* HomeViewController.swift */,
 				A4E15D1B208A9262002D02B4 /* Info.plist */,
-				A4E15D18208A9262002D02B4 /* LaunchScreen.storyboard */,
-				A4438F48208FF162009EB059 /* LearnViewController.swift */,
-				A41C5560208BF8F00042B46C /* LoginViewController.swift */,
-				A4E15D13208A9261002D02B4 /* Main.storyboard */,
-				A41C5561208BF8F00042B46C /* ResetPasswordViewController.swift */,
-				A45E292A208EDD2600B59A8B /* SettingsController.swift */,
-				A41C555E208BF8EF0042B46C /* SignUpViewController.swift */,
-				A41C556A208C20260042B46C /* User.storyboard */,
-				A41C556C208C20580042B46C /* UserDetailsViewController.swift */,
-				A4F286132092AB1100BDEDA1 /* UserModel.swift */,
+				430ECA7E2097847100C3D805 /* Models */,
+				430ECA7F2097849000C3D805 /* Views */,
 			);
 			path = Mentor.me;
 			sourceTree = "<group>";
@@ -340,7 +378,9 @@
 				A4438F49208FF162009EB059 /* LearnViewController.swift in Sources */,
 				A41C5562208BF8F00042B46C /* SignUpViewController.swift in Sources */,
 				A455968620900E5D00360324 /* CategoryModel.swift in Sources */,
+				430ECA7D2097834C00C3D805 /* TeachViewController.swift in Sources */,
 				A41C5565208BF8F00042B46C /* ResetPasswordViewController.swift in Sources */,
+				4338EF2820969D4A006A035F /* MyClassesViewController.swift in Sources */,
 				A4438F4D209001E7009EB059 /* ClassModel.swift in Sources */,
 				A4438F4B208FF4BF009EB059 /* ClassTableViewCell.swift in Sources */,
 			);

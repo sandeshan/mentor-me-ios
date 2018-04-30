@@ -71,36 +71,93 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.dropDown.show()
     }
     
-    func calcDistance(categoryID: Int) {
+    func checkIfInRange(origin: String, dest: String, completionHandler: @escaping (Bool, Error?) -> ()) {
+        
+        let URL = DISTANCE_MATRIX_URL + "&origins=place_id:" + origin + "&destinations=place_id:" + dest + "&key=" + DISTANCE_MATRIX_KEY;
+        var res: Bool = true
+        
+        //fetching data from distance matrix api
+        Alamofire.request(URL).responseJSON { response in
+            
+            switch response.result {
+            case .success( _):
+                if let result = response.result.value {
+                    let data = result as! NSDictionary
+                    let rows = data["rows"] as! [NSDictionary]
+                    let elements = rows[0]["elements"] as! [NSDictionary]
+                    let dist = elements[0]["distance"] as! NSDictionary
+                    res = (dist["value"] as! Int) <= 40230
+                    completionHandler(res, nil)
+                }
+            case .failure(let error):
+                completionHandler(false, error)
+            }
+        }
+    }
+    
+    func filterClasses(classes: [ClassModel]) {
+        self.classesArray.removeAll()
+        
+        let userID = Auth.auth().currentUser?.uid
+        
+        self.databaseRef.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let address = value?["address"] as! NSDictionary
+            
+            let user = UserModel(id: userID,
+                                 fullName: value?["fullName"] as? String ?? "",
+                                 phoneNum: value?["phoneNum"] as? String ?? "",
+                                 profileImage: value?["profileImage"] as? String ?? "",
+                                 formattedAddress: address["formattedAddress"] as? String ?? "",
+                                 placeID: address["placeID"] as? String ?? "")
+            
+            for eachClass in classes {
+                self.checkIfInRange(origin: user.placeID!, dest: eachClass.location!) { result, error in
+                    if (result) {
+                        self.classesArray.append(eachClass)
+                        self.classesList.reloadData()
+                    }
+                }
+            }
+            
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
     }
     
     func fetchClasses(categoryID: Int) {
 //        let userID = Auth.auth().currentUser?.uid
+        var tempClasses = [ClassModel]()
         self.databaseRef.child("classes").observe( .value, with: { (snapshot) in
             
             if snapshot.childrenCount > 0 {
                 self.classesArray.removeAll()
+                tempClasses.removeAll()
                 for classes in snapshot.children.allObjects as! [DataSnapshot] {
                     let classObj = classes.value as? [String: AnyObject]
+                    let interested = classObj!["interested"] as? [String: Bool]
                     
-                    let eachClass = ClassModel(category: classObj?["category"] as? Int,
+                    let eachClass = ClassModel(id: classes.key,
+                                               category: classObj?["category"] as? Int,
                                                description: classObj?["description"] as? String,
                                                location: classObj?["location"] as? String,
                                                picture: classObj?["picture"] as? String,
                                                teacherID: classObj?["teacherID"] as? String,
-                                               title: classObj?["title"] as? String)
+                                               title: classObj?["title"] as? String, interested: interested)
                     
                     if (categoryID == 8) {
-                        self.classesArray.append(eachClass)
+                        tempClasses.append(eachClass)
                     } else {
                         if eachClass.category == categoryID {
-                            self.classesArray.append(eachClass)
+                            tempClasses.append(eachClass)
                         }
                     }
                     
                 }
-                self.classesList.reloadData()
+                self.filterClasses(classes: tempClasses)
+//                self.classesList.reloadData()
             }
         }) { (error) in
             print(error.localizedDescription)
@@ -136,15 +193,18 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ClassTableViewCell
         
-        let details = self.classesArray[indexPath.row]
-        
-        cell.classTitle.text = details.title
-        cell.classDesc.text = details.description
-        
-        Alamofire.request(details.picture!).responseImage { response in
+        if (self.classesArray.count > 0) {
             
-            if let image = response.result.value {
-                cell.classImage.image = image
+            let details = self.classesArray[indexPath.row]
+            
+            cell.classTitle.text = details.title
+            cell.classDesc.text = details.description
+            
+            Alamofire.request(details.picture!).responseImage { response in
+                
+                if let image = response.result.value {
+                    cell.classImage.image = image
+                }
             }
         }
         
@@ -158,9 +218,6 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
         controller.classDetails = classDetails
         self.present(controller, animated: true, completion: nil)
         
-//        let detailViewController = ClassDetailsViewController()
-//        detailViewController.classDetails = classDetails
-//        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 
 }

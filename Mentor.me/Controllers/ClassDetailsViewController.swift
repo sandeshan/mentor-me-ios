@@ -28,11 +28,13 @@ class ClassDetailsViewController: UIViewController {
     @IBOutlet weak var teacherPhoneNum: UIButton!
     @IBOutlet weak var teacherAddress: UIButton!
     
+    var userInterested: Bool!
     @IBOutlet weak var interestedBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let userID = Auth.auth().currentUser?.uid
         self.databaseRef = Database.database().reference()
         
         Alamofire.request(self.classDetails.picture!).responseImage { response in
@@ -62,6 +64,14 @@ class ClassDetailsViewController: UIViewController {
             print(error.localizedDescription)
         }
         
+        if (self.classDetails.interested != nil) {
+            self.userInterested = (self.classDetails.interested![userID!] != nil)
+            
+            self.setInterested(type: self.userInterested)
+        } else {
+            self.userInterested = false
+            self.setInterested(type: false)
+        }
     }
     
     func showTeacherDetails(teacher: UserModel) {
@@ -82,7 +92,31 @@ class ClassDetailsViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func setInterested(type: Bool) {
+        if (type) {
+            self.interestedBtn.setTitle("Not Interested", for: .normal)
+            self.interestedBtn.backgroundColor = UIColor.red
+        } else {
+            self.interestedBtn.setTitle("I'm Interested !", for: .normal)
+            self.interestedBtn.backgroundColor = UIColor.green
+        }
+    }
+    
     @IBAction func interestedBtnClick(_ sender: UIButton) {
+        
+        let userID = Auth.auth().currentUser?.uid
+        
+        if (self.userInterested) {
+            self.view.makeToast("Removed from your Classes !", position: .center)
+            self.databaseRef.child("classes").child(self.classDetails.id!)
+                .child("interested").child(userID!).removeValue()
+        } else {
+            self.view.makeToast("Added to your Classes !", position: .center)
+            self.databaseRef.child("classes").child(self.classDetails.id!)
+                .child("interested").child(userID!).setValue(true)
+        }
+        self.userInterested = !self.userInterested
+        self.setInterested(type: self.userInterested)
     }
     
     override func didReceiveMemoryWarning() {

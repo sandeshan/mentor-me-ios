@@ -83,7 +83,7 @@ class UserDetailsViewController: UIViewController, ImagePickerDelegate, GMSPlace
         viewController.dismiss(animated: true, completion: nil)
         
         print("Place name \(place.name)")
-        print("Place address \(place.formattedAddress ?? "")")
+        print("Place id: \(place.placeID)")
         
         self.placeID = place.placeID
         self.addressField.text = place.formattedAddress
