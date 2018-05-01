@@ -57,15 +57,15 @@ class UserDetailsViewController: UIViewController, ImagePickerDelegate, GMSPlace
     }
     
     @IBAction func doneClicked(_ sender: UIButton) {
-        
-        self.databaseRef.child("users").child(Auth.auth().currentUser!.uid).setValue([
-            "fullName": String(nameField.text ?? ""),
-            "phoneNum": String(phoneField.text ?? ""),
-            "address": ["placeID": self.placeID, "formattedAddress": String(addressField.text ?? "")],
+        let userID = Auth.auth().currentUser!.uid
+        self.databaseRef.child("users").child(userID).setValue([
+            "fullName": nameField.text!,
+            "phoneNum": phoneField.text! ,
+            "address": ["placeID": self.placeID, "formattedAddress": addressField.text!],
             "profileImage": imageURL
             ])
         
-        self.view.makeToast("Profile Updated!")
+        self.view.makeToast("Profile Updated!", position: .center)
     }
     
     @IBAction func selectAddressClicked(_ sender: UIButton) {

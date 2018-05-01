@@ -31,6 +31,10 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         databaseRef = Database.database().reference()
         initDropdown()
+//        fetchClasses(categoryID: 8)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fetchClasses(categoryID: 8)
     }
     
@@ -71,10 +75,11 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.dropDown.show()
     }
     
-    func checkIfInRange(origin: String, dest: String, completionHandler: @escaping (Bool, Error?) -> ()) {
+    func checkIfInRange(origin: String, classObj: ClassModel, completionHandler: @escaping (String, Error?) -> ()) {
         
-        let URL = DISTANCE_MATRIX_URL + "&origins=place_id:" + origin + "&destinations=place_id:" + dest + "&key=" + DISTANCE_MATRIX_KEY;
+        let URL = "\(DISTANCE_MATRIX_URL)&origins=place_id:\(origin)&destinations=place_id:\(classObj.location!)&key=\(DISTANCE_MATRIX_KEY)"
         var res: Bool = true
+        var distance: String = "false"
         
         //fetching data from distance matrix api
         Alamofire.request(URL).responseJSON { response in
@@ -87,10 +92,14 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
                     let elements = rows[0]["elements"] as! [NSDictionary]
                     let dist = elements[0]["distance"] as! NSDictionary
                     res = (dist["value"] as! Int) <= 40230
-                    completionHandler(res, nil)
+                    
+                    if (res) {
+                        distance = dist["text"] as! String
+                        completionHandler(distance, nil)
+                    }
                 }
             case .failure(let error):
-                completionHandler(false, error)
+                completionHandler("false", error)
             }
         }
     }
@@ -112,8 +121,9 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
                                  placeID: address["placeID"] as? String ?? "")
             
             for eachClass in classes {
-                self.checkIfInRange(origin: user.placeID!, dest: eachClass.location!) { result, error in
-                    if (result) {
+                self.checkIfInRange(origin: user.placeID!, classObj: eachClass) { result, error in
+                    if (result != "false") {
+                        eachClass.distance = result
                         self.classesArray.append(eachClass)
                         self.classesList.reloadData()
                     }
@@ -130,10 +140,11 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
     func fetchClasses(categoryID: Int) {
 //        let userID = Auth.auth().currentUser?.uid
         var tempClasses = [ClassModel]()
+        self.classesArray.removeAll()
+        self.classesList.reloadData()
         self.databaseRef.child("classes").observe( .value, with: { (snapshot) in
             
             if snapshot.childrenCount > 0 {
-                self.classesArray.removeAll()
                 tempClasses.removeAll()
                 for classes in snapshot.children.allObjects as! [DataSnapshot] {
                     let classObj = classes.value as? [String: AnyObject]
@@ -143,6 +154,7 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
                                                category: classObj?["category"] as? Int,
                                                description: classObj?["description"] as? String,
                                                location: classObj?["location"] as? String,
+                                               distance: "",
                                                picture: classObj?["picture"] as? String,
                                                teacherID: classObj?["teacherID"] as? String,
                                                title: classObj?["title"] as? String, interested: interested)
@@ -173,8 +185,10 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let indexPath = tableView.indexPathForSelectedRow
         
-        let classDetails = self.classesArray[indexPath![1]]
-        self.showClassDetails(classDetails: classDetails)
+        if (self.classesArray.count > 0) {
+            let classDetails = self.classesArray[indexPath![1]]
+            self.showClassDetails(classDetails: classDetails)
+        }
         
     }
     

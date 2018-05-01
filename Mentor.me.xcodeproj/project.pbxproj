@@ -31,6 +31,8 @@
 		A4F286142092AB1100BDEDA1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F286132092AB1100BDEDA1 /* UserModel.swift */; };
 		A4F9C45C208D4EB3002F09FB /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4F9C45B208D4EB3002F09FB /* Home.storyboard */; };
 		A4F9C45E208D5A69002F09FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4F9C45D208D5A69002F09FB /* GoogleService-Info.plist */; };
+		B213ECF02098C6FC00176252 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B213ECEF2098C6FC00176252 /* MapViewController.swift */; };
+		B213ECF22098F2E900176252 /* AddClass.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B213ECF12098F2E900176252 /* AddClass.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		A4F286132092AB1100BDEDA1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		A4F9C45B208D4EB3002F09FB /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		A4F9C45D208D5A69002F09FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B213ECEF2098C6FC00176252 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B213ECF12098F2E900176252 /* AddClass.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddClass.storyboard; sourceTree = "<group>"; };
 		C14267C17E37E7581ACCDAC6 /* Pods-Mentor.me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mentor.me.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mentor.me/Pods-Mentor.me.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +106,7 @@
 				A4E15D18208A9262002D02B4 /* LaunchScreen.storyboard */,
 				A4E15D13208A9261002D02B4 /* Main.storyboard */,
 				A41C556A208C20260042B46C /* User.storyboard */,
+				B213ECF12098F2E900176252 /* AddClass.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 				A43C5631208E4DCE00091C7E /* HomeViewController.swift */,
 				A4438F48208FF162009EB059 /* LearnViewController.swift */,
 				A41C5560208BF8F00042B46C /* LoginViewController.swift */,
+				B213ECEF2098C6FC00176252 /* MapViewController.swift */,
 				4338EF2720969D4A006A035F /* MyClassesViewController.swift */,
 				A41C5561208BF8F00042B46C /* ResetPasswordViewController.swift */,
 				A45E292A208EDD2600B59A8B /* SettingsController.swift */,
@@ -237,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4E15D1A208A9262002D02B4 /* LaunchScreen.storyboard in Resources */,
+				B213ECF22098F2E900176252 /* AddClass.storyboard in Resources */,
 				A41C556B208C20260042B46C /* User.storyboard in Resources */,
 				A4F9C45C208D4EB3002F09FB /* Home.storyboard in Resources */,
 				A4E15D17208A9262002D02B4 /* Assets.xcassets in Resources */,
@@ -388,6 +395,7 @@
 				4338EF2820969D4A006A035F /* MyClassesViewController.swift in Sources */,
 				A4438F4D209001E7009EB059 /* ClassModel.swift in Sources */,
 				A4438F4B208FF4BF009EB059 /* ClassTableViewCell.swift in Sources */,
+				B213ECF02098C6FC00176252 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +540,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7K4N5WMKYK;
 				INFOPLIST_FILE = Mentor.me/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SandeshNaik.Mentor-me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -547,7 +557,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7K4N5WMKYK;
 				INFOPLIST_FILE = Mentor.me/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SandeshNaik.Mentor-me";
 				PRODUCT_NAME = "$(TARGET_NAME)";

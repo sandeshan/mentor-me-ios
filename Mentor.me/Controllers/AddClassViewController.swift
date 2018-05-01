@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 import DropDown
 import Firebase
 import ImagePicker
@@ -34,6 +35,7 @@ class AddClassViewController: UIViewController, ImagePickerDelegate, GMSPlacePic
     @IBOutlet weak var doneBtn: UIButton!
     
     var databaseRef: DatabaseReference!
+    var placesClient: GMSPlacesClient!
     
     var imagePickerController: ImagePickerController!
     var imageURL: String!
@@ -41,11 +43,41 @@ class AddClassViewController: UIViewController, ImagePickerDelegate, GMSPlacePic
     var placePicker: GMSPlacePickerViewController!
     var placeID: String!
     
+    var edit: Bool = false
+    var classDetails: ClassModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         databaseRef = Database.database().reference()
         self.initDropdown()
+        placesClient = GMSPlacesClient()
+        
+        if (self.edit) {
+            self.classTitle.text = self.classDetails.title
+            self.classDesc.text = self.classDetails.description
+            self.placeID = self.classDetails.location
+            self.imageURL = self.classDetails.picture
+            
+            Alamofire.request(self.classDetails.picture!).responseImage { response in
+                
+                if let image = response.result.value {
+                    self.classImage.image = image
+                }
+            }
+            
+            placesClient.lookUpPlaceID(self.classDetails.location!, callback: { (place, error) -> Void in
+                if let error = error {
+                    print("lookup place id query error: \(error.localizedDescription)")
+                    return
+                }
+                guard let place = place else {
+                    print("No place details for \(self.classDetails.location!)")
+                    return
+                }
+                self.classLocation.text = place.formattedAddress
+            })
+        }
     }
     
     func initDropdown() {
@@ -68,6 +100,11 @@ class AddClassViewController: UIViewController, ImagePickerDelegate, GMSPlacePic
                 self.categoriesArray.append(CategoryModel(categoryID: 8, categoryName: "All"))
                 for category in self.categoriesArray {
                     self.dropDown.dataSource.append(category.categoryName!)
+                    
+                    if (self.edit && self.classDetails.category == category.categoryID) {
+                        self.selectedCategory = self.classDetails.category
+                        self.categoryBtn.setTitle("Category: \(category.categoryName!)", for: .normal)
+                    }
                 }
             }
         }) { (error) in
@@ -173,17 +210,23 @@ class AddClassViewController: UIViewController, ImagePickerDelegate, GMSPlacePic
     
     @IBAction func addClassClicked(_ sender: UIButton) {
         let userID = Auth.auth().currentUser!.uid
+        var classesRef: DatabaseReference
         
-        self.databaseRef.child("classes").childByAutoId().setValue([
+        if (self.edit) {
+            classesRef = self.databaseRef.child("classes").child(self.classDetails.id!)
+            self.view.makeToast("Class Saved !", position: .center)
+        } else {
+            classesRef = self.databaseRef.child("classes").childByAutoId()
+            self.view.makeToast("Class Added !", position: .center)
+        }
+        
+        classesRef.setValue([
             "category": self.selectedCategory,
-            "description": String(classDesc.text ?? ""),
-            "location": String(classLocation.text ?? ""),
+            "description": self.classDesc.text ?? "",
+            "location": self.placeID,
             "picture": self.imageURL,
             "teacherID": userID,
-            "title": String(classTitle.text ?? "")
-            ])
-        
-        self.view.makeToast("Class Added !")
+            "title": self.classTitle.text ?? ""])
     }
     
     override func didReceiveMemoryWarning() {

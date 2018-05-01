@@ -25,6 +25,10 @@ class MyClassesViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         databaseRef = Database.database().reference()
+//        self.fetchUserClasses()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         self.fetchUserClasses()
     }
 
@@ -35,10 +39,11 @@ class MyClassesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func fetchUserClasses() {
         let userID = Auth.auth().currentUser?.uid
+        self.classesArray.removeAll()
+        self.classesList.reloadData()
         self.databaseRef.child("classes").observe( .value, with: { (snapshot) in
             
             if snapshot.childrenCount > 0 {
-                self.classesArray.removeAll()
                 for classes in snapshot.children.allObjects as! [DataSnapshot] {
                     let classObj = classes.value as? [String: AnyObject]
                     let interested = classObj!["interested"] as? [String: Bool]
@@ -47,6 +52,7 @@ class MyClassesViewController: UIViewController, UITableViewDataSource, UITableV
                                                category: classObj?["category"] as? Int,
                                                description: classObj?["description"] as? String,
                                                location: classObj?["location"] as? String,
+                                               distance: "",
                                                picture: classObj?["picture"] as? String,
                                                teacherID: classObj?["teacherID"] as? String,
                                                title: classObj?["title"] as? String, interested: interested)

@@ -19,13 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     let places_API_KEY = "AIzaSyDVvgMVF4W5ebaoh-aTC5j02c-QdX3Mtgk"
+    let maps_API_KEY = "AIzaSyBLogyzs4JyRdyH_pUUNBOcONc8usD13xk"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
         GMSPlacesClient.provideAPIKey(places_API_KEY)
-        GMSServices.provideAPIKey(places_API_KEY)
+        GMSServices.provideAPIKey(maps_API_KEY)
         
         DropDown.startListeningToKeyboard()
         

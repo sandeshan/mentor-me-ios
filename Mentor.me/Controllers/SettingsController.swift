@@ -61,7 +61,7 @@ class SettingsController: UITableViewController {
                 let address = value!["address"] as? NSDictionary
                 let imageURL = value?["profileImage"] as? String ?? ""
                 
-                vc?.nameField.text = value?["fullName"] as? String ?? ""
+                vc?.nameField.text = value?["fullName"] as? String
                 vc?.phoneField.text = value?["phoneNum"] as? String ?? ""
                 vc?.addressField.text = address?["formattedAddress"] as? String ?? ""
                 vc?.placeID = address?["placeID"] as? String ?? ""

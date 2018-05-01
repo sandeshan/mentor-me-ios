@@ -27,6 +27,10 @@ class TeachViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
 
         databaseRef = Database.database().reference()
+//        self.fetchUserClasses()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         self.fetchUserClasses()
     }
 
@@ -37,10 +41,11 @@ class TeachViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func fetchUserClasses() {
         let userID = Auth.auth().currentUser?.uid
+        self.classesArray.removeAll()
+        self.classesList.reloadData()
         self.databaseRef.child("classes").observe( .value, with: { (snapshot) in
             
             if snapshot.childrenCount > 0 {
-                self.classesArray.removeAll()
                 for classes in snapshot.children.allObjects as! [DataSnapshot] {
                     let classObj = classes.value as? [String: AnyObject]
                     let interested = classObj!["interested"] as? [String: Bool]
@@ -49,6 +54,7 @@ class TeachViewController: UIViewController, UITableViewDataSource, UITableViewD
                                                category: classObj?["category"] as? Int,
                                                description: classObj?["description"] as? String,
                                                location: classObj?["location"] as? String,
+                                               distance: "",
                                                picture: classObj?["picture"] as? String,
                                                teacherID: classObj?["teacherID"] as? String,
                                                title: classObj?["title"] as? String, interested: interested)
@@ -111,6 +117,7 @@ class TeachViewController: UIViewController, UITableViewDataSource, UITableViewD
         let storyboard = UIStoryboard(name: "ClassDetails", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "classDetails") as! ClassDetailsViewController
         controller.classDetails = classDetails
+        controller.teaching = true
         self.present(controller, animated: true, completion: nil)
         
     }
