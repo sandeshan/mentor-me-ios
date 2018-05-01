@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		430ECA7D2097834C00C3D805 /* TeachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430ECA7C2097834C00C3D805 /* TeachViewController.swift */; };
 		4338EF2820969D4A006A035F /* MyClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4338EF2720969D4A006A035F /* MyClassesViewController.swift */; };
+		4361E4912097D3080078517D /* AddClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4361E4902097D3080078517D /* AddClassViewController.swift */; };
 		52ADB01597469977E185F654 /* Pods_Mentor_me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D29C7DB980914682EB642A /* Pods_Mentor_me.framework */; };
 		A41C5562208BF8F00042B46C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C555E208BF8EF0042B46C /* SignUpViewController.swift */; };
 		A41C5564208BF8F00042B46C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C5560208BF8F00042B46C /* LoginViewController.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		430ECA7C2097834C00C3D805 /* TeachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachViewController.swift; sourceTree = "<group>"; };
 		4338EF2720969D4A006A035F /* MyClassesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClassesViewController.swift; sourceTree = "<group>"; };
+		4361E4902097D3080078517D /* AddClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClassViewController.swift; sourceTree = "<group>"; };
 		60C65BDE9A780B4EC9D10C6A /* Pods-Mentor.me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mentor.me.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mentor.me/Pods-Mentor.me.debug.xcconfig"; sourceTree = "<group>"; };
 		82D29C7DB980914682EB642A /* Pods_Mentor_me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mentor_me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41C555E208BF8EF0042B46C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		430ECA802097849000C3D805 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4361E4902097D3080078517D /* AddClassViewController.swift */,
 				A4D643D420928DCB00682A83 /* ClassDetailsViewController.swift */,
 				A43C5631208E4DCE00091C7E /* HomeViewController.swift */,
 				A4438F48208FF162009EB059 /* LearnViewController.swift */,
@@ -373,6 +376,7 @@
 				A4E15D0E208A9261002D02B4 /* AppDelegate.swift in Sources */,
 				A45E292B208EDD2600B59A8B /* SettingsController.swift in Sources */,
 				A4D643D520928DCB00682A83 /* ClassDetailsViewController.swift in Sources */,
+				4361E4912097D3080078517D /* AddClassViewController.swift in Sources */,
 				A4F286142092AB1100BDEDA1 /* UserModel.swift in Sources */,
 				A43C5632208E4DCE00091C7E /* HomeViewController.swift in Sources */,
 				A4438F49208FF162009EB059 /* LearnViewController.swift in Sources */,
