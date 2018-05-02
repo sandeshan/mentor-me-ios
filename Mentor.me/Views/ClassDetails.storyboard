@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="etk-Ol-1x8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="etk-Ol-1x8">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -111,17 +111,17 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UVb-hb-SZ3">
-                                <rect key="frame" x="16" y="603" width="343" height="106"/>
+                                <rect key="frame" x="16" y="603" width="343" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdg-82-V1Q">
-                                        <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="106"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="30"/>
                                         <state key="normal" title="See Interested"/>
                                         <connections>
                                             <action selector="seeInterestedClicked:" destination="etk-Ol-1x8" eventType="touchUpInside" id="WOX-82-qqH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOr-0Y-X8o">
-                                        <rect key="frame" x="171.66666666666663" y="0.0" width="171.33333333333337" height="106"/>
+                                        <rect key="frame" x="171.66666666666663" y="0.0" width="171.33333333333337" height="30"/>
                                         <state key="normal" title="Delete Class">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -132,7 +132,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUs-tb-vla">
-                                <rect key="frame" x="16" y="717" width="343" height="41"/>
+                                <rect key="frame" x="16" y="641" width="343" height="117"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Interested!"/>
                                 <connections>
@@ -180,8 +180,6 @@
                         <outlet property="classDesc" destination="57H-EL-BcG" id="nZn-FT-gwE"/>
                         <outlet property="classImage" destination="iAN-m7-0B7" id="37w-Pj-4fu"/>
                         <outlet property="classTitle" destination="kNZ-1D-qTd" id="Jq1-hq-PGq"/>
-                        <outlet property="deleteClassBtn" destination="tOr-0Y-X8o" id="fwQ-bM-Gio"/>
-                        <outlet property="seeInterestedBtn" destination="Rdg-82-V1Q" id="Skz-qd-LUm"/>
                         <outlet property="teacherActions" destination="UVb-hb-SZ3" id="xyA-pU-8ag"/>
                         <outlet property="teacherAddress" destination="ETB-5n-ELN" id="IMK-U9-igg"/>
                         <outlet property="teacherImage" destination="ABK-vV-OrH" id="qPT-RN-rQX"/>

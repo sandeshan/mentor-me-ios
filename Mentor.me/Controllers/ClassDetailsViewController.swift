@@ -76,6 +76,7 @@ class ClassDetailsViewController: UIViewController {
         if (self.teaching) {
             self.actionBtn.setTitle("Edit Class", for: .normal)
         } else {
+            self.teacherActions.removeFromSuperview()
             if (self.classDetails.interested != nil) {
                 self.userInterested = (self.classDetails.interested![userID!] != nil)
                 self.setInterested(type: self.userInterested)
@@ -169,7 +170,32 @@ class ClassDetailsViewController: UIViewController {
     }
     
     @IBAction func deleteClicked(_ sender: UIButton) {
+        // Create the alert controller
+        let alertController = UIAlertController(title: "Delete Class", message: "Are you sure you want to Delete this Class ?", preferredStyle: .alert)
         
+        // Create the actions
+        let okAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            self.deleteClass(id: self.classDetails.id!)
+            alertController.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteClass(id: String) {
+        self.databaseRef.child("classes").child(id).removeValue()
+        self.view.makeToast("Class Deleted !", position: .center)
     }
     
     override func didReceiveMemoryWarning() {
