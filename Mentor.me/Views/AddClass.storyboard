@@ -44,31 +44,31 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rgX-uo-edl">
                                 <rect key="frame" x="150" y="283" width="74" height="30"/>
-                                <state key="normal" title="Add Image"/>
+                                <state key="normal" title="Add Image">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="addImageClicked:" destination="ZeX-H6-6GP" eventType="touchUpInside" id="GPB-ab-aYY"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Class Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4EE-LE-uvs">
-                                <rect key="frame" x="16" y="340" width="343" height="21"/>
+                                <rect key="frame" x="16" y="340" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N33-MF-U55">
-                                <rect key="frame" x="16" y="369" width="343" height="30"/>
+                                <rect key="frame" x="16" y="368.5" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8M-Fc-hzN">
-                                <rect key="frame" x="16" y="468" width="343" height="21"/>
+                                <rect key="frame" x="16" y="467.5" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kc2-4V-zGj">
-                                <rect key="frame" x="16" y="497" width="343" height="48"/>
+                                <rect key="frame" x="16" y="496.5" width="343" height="48.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -76,12 +76,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vL-rD-XFQ">
                                 <rect key="frame" x="16" y="553" width="66" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzG-SC-HzY">
                                 <rect key="frame" x="283" y="550" width="78" height="30"/>
-                                <state key="normal" title="Select"/>
+                                <state key="normal" title="Select">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="selectLocationClicked:" destination="ZeX-H6-6GP" eventType="touchUpInside" id="qGf-Xi-pDg"/>
                                 </connections>
@@ -94,20 +95,24 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a26-wb-LG5">
                                 <rect key="frame" x="145.5" y="637" width="83" height="30"/>
-                                <state key="normal" title="Save Class !"/>
+                                <state key="normal" title="Save Class !">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="addClassClicked:" destination="ZeX-H6-6GP" eventType="touchUpInside" id="bzU-OH-lB0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gb-sB-Kaq">
-                                <rect key="frame" x="16" y="419" width="343" height="30"/>
-                                <state key="normal" title="Select Category"/>
+                                <rect key="frame" x="16" y="418.5" width="343" height="30"/>
+                                <state key="normal" title="Select Category">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="selectCategoryClicked:" destination="ZeX-H6-6GP" eventType="touchUpInside" id="WJ2-8F-EDf"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.73725490196078436" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="N33-MF-U55" firstAttribute="top" secondItem="4EE-LE-uvs" secondAttribute="bottom" constant="8" id="0sM-NS-P6Z"/>
                             <constraint firstItem="a26-wb-LG5" firstAttribute="centerX" secondItem="iGo-IA-gBe" secondAttribute="centerX" id="3Ik-Gz-fog"/>

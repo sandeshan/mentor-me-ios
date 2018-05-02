@@ -35,7 +35,17 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        fetchClasses(categoryID: 8)
+        self.checkDetails()
+    }
+    
+    func checkDetails() {
+        let userID = Auth.auth().currentUser?.uid
+        databaseRef.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if (snapshot.hasChild(userID!)) {
+                self.fetchClasses(categoryID: 8)
+            }
+        })
     }
     
     func initDropdown() {

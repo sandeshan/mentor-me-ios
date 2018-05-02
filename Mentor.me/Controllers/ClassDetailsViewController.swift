@@ -22,6 +22,7 @@ class ClassDetailsViewController: UIViewController {
     var teaching: Bool = false
     
     var classDetails: ClassModel!
+    var teacherDetails: UserModel!
     @IBOutlet weak var backBtn: UIBarButtonItem!
     
     @IBOutlet weak var classImage: UIImageView!
@@ -60,14 +61,14 @@ class ClassDetailsViewController: UIViewController {
             let value = snapshot.value as? NSDictionary
             let address = value?["address"] as! NSDictionary
             
-            let user = UserModel(id: self.classDetails.teacherID!,
+            self.teacherDetails = UserModel(id: self.classDetails.teacherID!,
                                  fullName: value?["fullName"] as? String ?? "",
                                  phoneNum: value?["phoneNum"] as? String ?? "",
                                  profileImage: value?["profileImage"] as? String ?? "",
                                  formattedAddress: address["formattedAddress"] as? String ?? "",
                                  placeID: address["placeID"] as? String ?? "")
             
-            self.showTeacherDetails(teacher: user)
+            self.showTeacherDetails(teacher: self.teacherDetails)
             
         }) { (error) in
             print(error.localizedDescription)
@@ -127,6 +128,23 @@ class ClassDetailsViewController: UIViewController {
             let vc = segue.destination as? MapViewController
             vc?.placeDetails = self.placeDetails
         }
+        
+        if segue.destination is UsersViewController
+        {
+            let vc = segue.destination as? UsersViewController
+            var users = [String]()
+            if (self.classDetails.interested != nil) {
+                for pair in self.classDetails.interested! {
+                    users.append(pair.key)
+                }
+            }
+            vc?.userIDs = users
+        }
+    }
+    
+    @IBAction func phoneNumClicked(_ sender: UIButton) {
+        guard let number = URL(string: "tel://" + self.teacherDetails.phoneNum!) else { return }
+        UIApplication.shared.open(number)
     }
     
     func setInterested(type: Bool) {
@@ -162,10 +180,6 @@ class ClassDetailsViewController: UIViewController {
             self.userInterested = !self.userInterested
             self.setInterested(type: self.userInterested)
         }
-        
-    }
-    
-    @IBAction func seeInterestedClicked(_ sender: UIButton) {
         
     }
     
