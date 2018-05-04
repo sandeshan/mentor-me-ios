@@ -37,13 +37,71 @@ class MyClassesViewController: UIViewController, UITableViewDataSource, UITableV
         // Dispose of any resources that can be recreated.
     }
     
+    func getDistance(origin: String, classObj: ClassModel, completionHandler: @escaping (String, Error?) -> ()) {
+        
+        let URL = "\(DISTANCE_MATRIX_URL)&origins=place_id:\(origin)&destinations=place_id:\(classObj.location!)&key=\(DISTANCE_MATRIX_KEY)"
+        var distance: String = "0 mi"
+        
+        //fetching data from distance matrix api
+        Alamofire.request(URL).responseJSON { response in
+            
+            switch response.result {
+            case .success( _):
+                if let result = response.result.value {
+                    let data = result as! NSDictionary
+                    let rows = data["rows"] as! [NSDictionary]
+                    let elements = rows[0]["elements"] as! [NSDictionary]
+                    let dist = elements[0]["distance"] as! NSDictionary
+                    
+                    distance = dist["text"] as! String
+                    completionHandler(distance, nil)
+                }
+            case .failure(let error):
+                completionHandler("0 mi", error)
+            }
+        }
+    }
+    
+    func filterClasses(classes: [ClassModel]) {
+        self.classesArray.removeAll()
+        
+        let userID = Auth.auth().currentUser?.uid
+        
+        self.databaseRef.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let address = value?["address"] as! NSDictionary
+            
+            let user = UserModel(id: userID,
+                                 fullName: value?["fullName"] as? String ?? "",
+                                 phoneNum: value?["phoneNum"] as? String ?? "",
+                                 profileImage: value?["profileImage"] as? String ?? "",
+                                 formattedAddress: address["formattedAddress"] as? String ?? "",
+                                 placeID: address["placeID"] as? String ?? "")
+            
+            for eachClass in classes {
+                self.getDistance(origin: user.placeID!, classObj: eachClass) { result, error in
+                    eachClass.distance = result
+                    self.classesArray.append(eachClass)
+                    self.classesList.reloadData()
+                }
+            }
+            
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+    }
+    
     func fetchUserClasses() {
         let userID = Auth.auth().currentUser?.uid
+        var tempClasses = [ClassModel]()
         self.classesArray.removeAll()
         self.classesList.reloadData()
         self.databaseRef.child("classes").observe( .value, with: { (snapshot) in
             
             if snapshot.childrenCount > 0 {
+                tempClasses.removeAll()
                 for classes in snapshot.children.allObjects as! [DataSnapshot] {
                     let classObj = classes.value as? [String: AnyObject]
                     let interested = classObj!["interested"] as? [String: Bool]
@@ -59,11 +117,11 @@ class MyClassesViewController: UIViewController, UITableViewDataSource, UITableV
                     
                     if (eachClass.interested != nil) {
                         if (eachClass.interested![userID!] != nil) {
-                            self.classesArray.append(eachClass)
-                            self.classesList.reloadData()
+                            tempClasses.append(eachClass)
                         }
                     }
                 }
+                self.filterClasses(classes: tempClasses)
             }
         }) { (error) in
             print(error.localizedDescription)

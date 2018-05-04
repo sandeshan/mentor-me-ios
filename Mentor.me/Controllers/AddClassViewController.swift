@@ -28,6 +28,7 @@ class AddClassViewController: UIViewController, ImagePickerDelegate, GMSPlacePic
     var dropDown: DropDown!
     var categoriesArray = [CategoryModel]()
     var selectedCategory: Int!
+    var interested = [String: Bool]()
     
     @IBOutlet weak var classLocation: UITextField!
     @IBOutlet weak var selectLocationBtn: UIButton!
@@ -225,6 +226,7 @@ class AddClassViewController: UIViewController, ImagePickerDelegate, GMSPlacePic
         classesRef.setValue([
             "category": self.selectedCategory,
             "description": self.classDesc.text ?? "",
+            "interested": self.interested,
             "location": self.placeID,
             "picture": self.imageURL,
             "teacherID": userID,

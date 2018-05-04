@@ -164,6 +164,7 @@ class ClassDetailsViewController: UIViewController {
             let controller = storyboard.instantiateViewController(withIdentifier: "addClass") as! AddClassViewController
             controller.edit = true
             controller.classDetails = self.classDetails
+            controller.interested = self.classDetails.interested!
             self.present(controller, animated: true, completion: nil)
         } else {
             let userID = Auth.auth().currentUser?.uid
