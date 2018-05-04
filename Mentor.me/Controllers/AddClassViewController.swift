@@ -20,6 +20,7 @@ class AddClassViewController: UIViewController, ImagePickerDelegate, GMSPlacePic
     @IBOutlet weak var classImage: UIImageView!
     @IBOutlet weak var addImageBtn: UIButton!
     
+    @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var classTitle: UITextField!
     @IBOutlet weak var classDesc: UITextView!
     
@@ -54,6 +55,7 @@ class AddClassViewController: UIViewController, ImagePickerDelegate, GMSPlacePic
         placesClient = GMSPlacesClient()
         
         if (self.edit) {
+            self.navBar.title = "Edit Class"
             self.classTitle.text = self.classDetails.title
             self.classDesc.text = self.classDetails.description
             self.placeID = self.classDetails.location

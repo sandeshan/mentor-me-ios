@@ -18,8 +18,6 @@ class HomeViewController: UITabBarController {
         
         databaseRef = Database.database().reference()
         self.checkDetails()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

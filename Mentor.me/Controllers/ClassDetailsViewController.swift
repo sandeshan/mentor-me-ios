@@ -180,7 +180,6 @@ class ClassDetailsViewController: UIViewController {
             self.userInterested = !self.userInterested
             self.setInterested(type: self.userInterested)
         }
-        
     }
     
     @IBAction func deleteClicked(_ sender: UIButton) {

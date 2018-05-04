@@ -43,7 +43,7 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
         databaseRef.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if (snapshot.hasChild(userID!)) {
-                self.fetchClasses(categoryID: 8)
+                self.fetchClasses(categoryID: 8) // categoryID = 8 => "All"
             }
         })
     }
@@ -101,7 +101,9 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
                     let rows = data["rows"] as! [NSDictionary]
                     let elements = rows[0]["elements"] as! [NSDictionary]
                     let dist = elements[0]["distance"] as! NSDictionary
-                    res = (dist["value"] as! Int) <= 40230
+                    
+                    // check if distance is less than 25 miles
+                    res = (dist["value"] as! Int) <= 132000 // 132000 ft = 25 miles
                     
                     if (res) {
                         distance = dist["text"] as! String
