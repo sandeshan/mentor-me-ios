@@ -41,11 +41,11 @@ class TeachViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func fetchUserClasses() {
         let userID = Auth.auth().currentUser?.uid
-        self.classesArray.removeAll()
-        self.classesList.reloadData()
         self.databaseRef.child("classes").observe( .value, with: { (snapshot) in
             
             if snapshot.childrenCount > 0 {
+                self.classesArray.removeAll()
+                self.classesList.reloadData()
                 for classes in snapshot.children.allObjects as! [DataSnapshot] {
                     let classObj = classes.value as? [String: AnyObject]
                     let interested = classObj!["interested"] as? [String: Bool]

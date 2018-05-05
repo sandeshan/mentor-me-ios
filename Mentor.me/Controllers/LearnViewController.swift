@@ -152,12 +152,12 @@ class LearnViewController: UIViewController, UITableViewDataSource, UITableViewD
     func fetchClasses(categoryID: Int) {
 //        let userID = Auth.auth().currentUser?.uid
         var tempClasses = [ClassModel]()
-        self.classesArray.removeAll()
-        self.classesList.reloadData()
         self.databaseRef.child("classes").observe( .value, with: { (snapshot) in
             
             if snapshot.childrenCount > 0 {
                 tempClasses.removeAll()
+                self.classesArray.removeAll()
+                self.classesList.reloadData()
                 for classes in snapshot.children.allObjects as! [DataSnapshot] {
                     let classObj = classes.value as? [String: AnyObject]
                     let interested = classObj!["interested"] as? [String: Bool]
